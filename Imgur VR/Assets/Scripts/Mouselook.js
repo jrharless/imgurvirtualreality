@@ -4,8 +4,8 @@
 public var turnSpeed: float = 15.0F;
 public var minX: float = -60.0F;
 public var maxX: float = 60.0F;
-public var maxY: float = 60.0F;
 public var minY: float = -60.0F;
+public var maxY: float = 60.0F;
 private var initialRotation : Quaternion;
 private var rotationX : float;
 private var rotationY : float;
