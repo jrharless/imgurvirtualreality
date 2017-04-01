@@ -75,7 +75,6 @@ function spawnNewMemesAsNeeded() {
 			meme = Instantiate(this.meme, offset, Quaternion.identity);
 			meme.GetComponent(GimmeAMeme).imageUrl = memeName;
 			meme.GetComponent(GimmeAMeme).startTextureDownload();
-			
 		}
 		// Reset position, wait for distance to pass
 		lastPosition = transform.position;
