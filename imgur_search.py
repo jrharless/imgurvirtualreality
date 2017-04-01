@@ -28,9 +28,6 @@ from types import *
 from datetime import datetime, date, time
 from imgurpython import ImgurClient # makesure this package is installed
 
-ids = ["dog memes"] # enter your search terms
-       
-
 # go to https://imgur.com/signin?redirect=http://api.imgur.com/oauth2/addclient to register an app
 client_id = 'd0470a1034a6b60'
 client_secret = '006fece929d4c55094f29640c6e4508e66d542c8'
@@ -99,8 +96,6 @@ def write_data(self, d, kid, page):
     file = open("imageurls.txt","w") 
  
     file.write("Image URL \r\n") 
-
- 
        
     for item in d:
         import time
@@ -147,17 +142,18 @@ def write_data(self, d, kid, page):
     file.close();
     
 class Scrape:
-    def __init__(self):    
+    def __init__(self):
         engine = sqlalchemy.create_engine("sqlite:///image_keyword1.sqlite", echo=False)  
         Session = sessionmaker(bind=engine)
         self.session = Session()  
         Base.metadata.create_all(engine)
 
-    def main(self):
+    def main(self, ids, pages):
+        outs = ""
         for n,kid in enumerate(ids):
             print ("search keyword:", kid)
             sys.stdout.flush()
-            for page in range(5): 
+            for page in range(pages): 
                 kid = kid
                 print ("------XXXXXX------ STARTING PAGE", page)
                 page = page
@@ -167,8 +163,26 @@ class Scrape:
                     continue 
                 if len(d)==0:
                     continue
+                
+
         self.session.close()
 
+
+from flask import Flask, request
+app = Flask(__name__)
+scraper = Scrape()
+
+@app.route('/', methods=['POST'])
+def hello_world():
+        command = request.form['command']
+        arguments = request.form['arguments']
+        if command == "search":
+            print("Searching for " + arguments)
+            scraper.main([arguments], 5)
+            response = "done"
+        else:
+            response = "invalid query"
+        return response
+
 if __name__ == "__main__":
-    s = Scrape()
-    s.main()
+    app.run()

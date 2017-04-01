@@ -10,3 +10,6 @@ def hello_world():
         else:
             response = "invalid query"
         return response
+
+if __name__ == "__main__":
+    app.run()

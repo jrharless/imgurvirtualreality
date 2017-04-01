@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\GlobalSceneManager.js" />
      <Compile Include="Assets\Scripts\Mouselook.js" />
      <Compile Include="Assets\Scripts\PlayerLocomotion.js" />
+     <Compile Include="Assets\Scripts\ServerControl.js" />
      <Compile Include="Assets\Scripts\SpawnMemes.js" />
      <Compile Include="Assets\Scripts\ZoomTo.js" />
      <None Include="Assets\memes.txt" />
@@ -59,6 +60,12 @@
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.Sqlite">
+ <HintPath>C:/Users/Ben/Documents/imgurvirtualreality/Imgur VR/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>C:/Users/Ben/Documents/imgurvirtualreality/Imgur VR/Assets/Plugins/System.Data.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
