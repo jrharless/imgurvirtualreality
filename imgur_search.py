@@ -102,10 +102,10 @@ def write_data(self, d, kid, page):
         keyword = kid
         image_id = item.id
         image_link = item.link
-        if image_link.endswith('jpg') or image_link.endswith('gif') or image_link.endswith('png') or image_link.endswith('bmp'):
+        if image_link.endswith('jpg') or image_link.endswith('png'):
             multiple_images = "NO"
         else:
-            multiple_images = "this link contains multiple images"
+            continue
         image_title = item.title
         image_description = item.description
         time_s_temp1 = item.datetime
