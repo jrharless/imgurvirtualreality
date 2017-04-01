@@ -1,4 +1,5 @@
 ﻿#pragma strict
+import System.Collections.Generic;
 /**
  * Control player's keyboard movement and mouselook.
  * After we get VR running, this will probably be replaced.
@@ -26,8 +27,7 @@ function Update () {
 	transform.localRotation = initialRotation * qx * qy;
 }
 
-function ClampAngle (angle : float, min : float, max: float)
-{
+function ClampAngle (angle : float, min : float, max: float) {
      if (angle < -360F)
          angle += 360F;
      if (angle > 360F)

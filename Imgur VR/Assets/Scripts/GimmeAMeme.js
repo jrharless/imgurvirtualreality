@@ -4,6 +4,7 @@ public var imageUrl: String = "http://orlando-politics.com/wp-content/uploads/20
 public var loadImageOnStartup: boolean = false;
 
 function Start () {
+	transform.Rotate(0, Random.Range(0, 360), 0);
     if (loadImageOnStartup) {
     	startTextureDownload();
     }
