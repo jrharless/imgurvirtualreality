@@ -10,11 +10,10 @@ public var meme: GameObject;
 // List of memes (currently a file) to choose from
 public var memeList: TextAsset;
 // Number of memes to spawn
-public var minMemes: int = 6;
-public var maxMemes: int = 12;
+public var minMemes: int = 2;
+public var maxMemes: int = 6;
 // Memes are spawned in a ring this far from the player
-public var spawnDistance: float = 15.0F;
-public var spawnDistanceVariance: float = 0.5F;
+public var spawnDistance: float = 50.0F;
 // Memes aren't spawned if the player doesn't move beyond this point
 public var walkDistance: float = 5.0F;
 
@@ -63,14 +62,25 @@ function spawnNewMemesAsNeeded() {
 			Debug.Log("Meme queue empty");
 			break;
 		}
+		
 		for (var i=0; i<memesToSpawn; i++) {
-			Debug.Log("Spawning: " + memeQueue.Dequeue());
+			var meme: GameObject;
+			var offset: Vector3;
+			var memeName: String = memeQueue.Dequeue();
+			Debug.Log("Spawning: " + memeName);
+			
+			offset = Random.onUnitSphere * spawnDistance;
+			offset.y = Random.Range(-8.0F, 8.0F);
+			offset += transform.position;
+			meme = Instantiate(this.meme, offset, Quaternion.identity);
+			meme.GetComponent(GimmeAMeme).imageUrl = memeName;
+			meme.GetComponent(GimmeAMeme).startTextureDownload();
+			
 		}
 		// Reset position, wait for distance to pass
 		lastPosition = transform.position;
 		do {
 			distance = Vector3.Distance(transform.position, lastPosition);
-			Debug.Log(distance);
 			yield WaitForSeconds(0.1);
 		} while (distance < walkDistance);
 	}

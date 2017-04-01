@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GimmeAMeme.js" />
+     <Compile Include="Assets\Scripts\GlobalSceneManager.js" />
      <Compile Include="Assets\Scripts\PlayerLocomotion.js" />
      <Compile Include="Assets\Scripts\SpawnMemes.js" />
      <None Include="Assets\memes.txt" />

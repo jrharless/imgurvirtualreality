@@ -17,7 +17,8 @@ function Start () {
 }
 
 function Update () {
-	transform.Translate(0.0F, 0.0F, Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime);
+	var speed: float = movementSpeed * Time.deltaTime;
+	transform.Translate(Input.GetAxis("Horizontal") * speed, 0.0F, Input.GetAxis("Vertical") * speed);
 	
 	rotationX += ClampAngle(Input.GetAxis("Mouse X") * turnSpeed, -360, 360);
 	rotationY += ClampAngle(Input.GetAxis("Mouse Y") * turnSpeed, -180, 180);
