@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\PlayerLocomotion.js" />
      <Compile Include="Assets\Scripts\ServerControl.js" />
      <Compile Include="Assets\Scripts\SpawnMemes.js" />
+     <Compile Include="Assets\Scripts\TurnTowardsPlayerWhenClose.js" />
      <Compile Include="Assets\Scripts\ZoomTo.js" />
      <None Include="Assets\memes.txt" />
  <Reference Include="UnityEngine.UI">
