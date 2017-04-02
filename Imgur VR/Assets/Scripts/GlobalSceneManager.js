@@ -1,5 +1,5 @@
 ﻿#pragma strict
-
+import UnityEngine.VR;
 
 /*
  * A global, static manager for transitioning between scenes and passing information between scenes.
@@ -10,6 +10,10 @@ public static class GlobalSceneManager  {
 	public var input2 : String;
 	public var input3: String;
 	public var song: String;
+
+	public function Awake() {
+		VRSettings.enabled = false;
+	}
 
 	public function setsong(s0ng: String){
 		song = s0ng;
@@ -33,8 +37,9 @@ public static class GlobalSceneManager  {
 	}
 
 	public function goToMemeSea(){
-		
 		Debug.Log("Go To Next Screen");
+		// enable VR
+		VRSettings.enabled = true;
 		UnityEngine.SceneManagement.SceneManager.LoadScene(memeSeaScene);
 	}
 

@@ -1,18 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{5D0E0737-EC9F-5938-F23D-6099ECD8EDF0}") = "Imgur VR", "Assembly-UnityScript.unityproj", "{B8210BEE-3C7F-4844-A1AA-F04C899C7559}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B8210BEE-3C7F-4844-A1AA-F04C899C7559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8210BEE-3C7F-4844-A1AA-F04C899C7559}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8210BEE-3C7F-4844-A1AA-F04C899C7559}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8210BEE-3C7F-4844-A1AA-F04C899C7559}.Release|Any CPU.Build.0 = Release|Any CPU
+
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

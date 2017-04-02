@@ -176,7 +176,7 @@ def hello_world():
         arguments = request.form['arguments']
         if command == "search":
             print("Searching for " + arguments)
-            scraper.main([arguments], 1)
+            scraper.main([arguments], 2)
             response = "done"
         else:
             response = "invalid query"

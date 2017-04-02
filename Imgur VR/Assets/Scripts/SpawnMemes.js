@@ -16,11 +16,18 @@ public var spawnDistance: float = 50.0F;
 // Memes aren't spawned if the player doesn't move beyond this point
 public var walkDistance: float = 1.0F;
 
+public var progressText: UnityEngine.UI.Text;
+
 // List of memes to work with
 private var memeQueue : Queue.< String>;
 
 function Start () {
 	loadAndSpawnMemes();
+}
+
+private function SetProgressText(msg: String) {
+	Debug.Log(msg);
+	progressText.text = msg;
 }
 
 function loadAndSpawnMemes() {
@@ -29,7 +36,7 @@ function loadAndSpawnMemes() {
 	arguments += GlobalSceneManager.input2 + " ";
 	arguments += GlobalSceneManager.input3;
 
-	Debug.Log("Generating memes...");
+	SetProgressText("Generating memes...");
 	var form = new WWWForm();
     form.AddField("command", "search");
 	form.AddField("arguments", arguments);
@@ -40,7 +47,7 @@ function loadAndSpawnMemes() {
 	}
 	UnityEngine.Debug.Log(w.text);
 
-	Debug.Log("Loading memes...");
+	SetProgressText("Loading memes...");
 	memeQueue = new Queue.< String>();
 	// Stolen outright: http://answers.unity3d.com/questions/743400/database-sqlite-setup-for-unity.html
 	var conn: String; //Path to database.
@@ -64,7 +71,12 @@ function loadAndSpawnMemes() {
 	dbcmd.Dispose();
 	dbconn.Close();
 
-	Debug.Log("Spawning memes...");
+	if (memeQueue.Count == 0) {
+		SetProgressText("OH GOD PANIC");
+		return;
+	}
+
+	youreDone();
 	var lastPosition: Vector3;
 	var distance: float;
 	while (memeQueue.Count > 0) {
@@ -88,4 +100,10 @@ function loadAndSpawnMemes() {
 			yield WaitForSeconds(0.1);
 		} while (distance < walkDistance);
 	}
+}
+
+private function youreDone() {
+	SetProgressText("Done!");
+	yield WaitForSeconds(0.5);
+	SetProgressText("");
 }
