@@ -20,14 +20,22 @@ public var walkDistance: float = 1.0F;
 private var memeQueue : Queue.< String>;
 
 function Start () {
-	loadMemes();
-	spawnNewMemesAsNeeded();
+	loadAndSpawnMemes();
 }
 
-/**
- * Get memes to spawn from the SQL Database
- */
-function loadMemes() {
+function loadAndSpawnMemes() {
+	Debug.Log("Generating memes...");
+	var form = new WWWForm();
+    form.AddField("command", "search");
+	form.AddField("arguments", "jojos bizarre adventure");
+	
+	var w = new WWW("http://127.0.0.1:5000", form);
+	while (!w.isDone) {
+		yield WaitForSeconds(0.1);
+	}
+	UnityEngine.Debug.Log(w.text);
+
+	Debug.Log("Loading memes...");
 	memeQueue = new Queue.< String>();
 	// Stolen outright: http://answers.unity3d.com/questions/743400/database-sqlite-setup-for-unity.html
 	var conn: String; //Path to database.
@@ -50,12 +58,8 @@ function loadMemes() {
 	reader.Close();
 	dbcmd.Dispose();
 	dbconn.Close();
-}
 
-/**
- * Spawn memes as a coroutine
- */
-function spawnNewMemesAsNeeded() {
+	Debug.Log("Spawning memes...");
 	var lastPosition: Vector3;
 	var distance: float;
 	while (memeQueue.Count > 0) {
