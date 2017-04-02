@@ -30,8 +30,8 @@ public static class GlobalSceneManager  {
 	public function setMeme3(s1: String){
 		input3 =s1;
 		Debug.Log(input3);
-
 	}
+
 	public function goToMemeSea(){
 		
 		Debug.Log("Go To Next Screen");

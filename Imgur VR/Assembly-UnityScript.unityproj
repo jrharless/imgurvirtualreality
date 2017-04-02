@@ -46,10 +46,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\ButtonClick.js" />
      <Compile Include="Assets\Scripts\Category.js" />
      <Compile Include="Assets\Scripts\CategoryNavigator.js" />
      <Compile Include="Assets\Scripts\CommentTextControl.js" />
+     <Compile Include="Assets\Scripts\Dropdownscript.js" />
      <Compile Include="Assets\Scripts\GlobalSceneManager.js" />
+     <Compile Include="Assets\Scripts\InputField.js" />
      <Compile Include="Assets\Scripts\MemeController.js" />
      <Compile Include="Assets\Scripts\Mouselook.js" />
      <Compile Include="Assets\Scripts\PlayerLocomotion.js" />

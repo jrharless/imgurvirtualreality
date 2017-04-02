@@ -24,10 +24,15 @@ function Start () {
 }
 
 function loadAndSpawnMemes() {
+	var arguments: String = "";
+	arguments += GlobalSceneManager.input1 + " ";
+	arguments += GlobalSceneManager.input2 + " ";
+	arguments += GlobalSceneManager.input3;
+
 	Debug.Log("Generating memes...");
 	var form = new WWWForm();
     form.AddField("command", "search");
-	form.AddField("arguments", "jojos bizarre adventure");
+	form.AddField("arguments", arguments);
 	
 	var w = new WWW("http://127.0.0.1:5000", form);
 	while (!w.isDone) {
