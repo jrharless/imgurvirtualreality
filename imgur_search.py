@@ -82,14 +82,12 @@ class Messages(Base):
        return "<Organization, Sender('%s', '%s')>" % (self.image_id, self.keyword)
 
 def search_image(kid, page):
-    try:
-        d = client.gallery_search(q = kid, advanced=None, sort='time', window='all', page=page)
-    except Exception as e:
-        #print "Error reading id %s, exception: %s" % (kid, e)
-        return None
+    pages = client.gallery_search(q = kid, advanced=None, sort='time', window='all', page=page)
+    for page in pages:
+        page.comments = client.gallery_item_comments(page.id)
      
-    print ("The number of images available for dowbload: ", len(d))
-    return d
+    print ("The number of images available for dowbload: ", len(pages))
+    return pages
     
 
 def write_data(self, d, kid, page):

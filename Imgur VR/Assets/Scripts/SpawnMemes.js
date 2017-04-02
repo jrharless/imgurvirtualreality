@@ -11,13 +11,10 @@ import System.Data;
 public var meme: GameObject;
 // List of memes (currently a file) to choose from
 public var memeList: TextAsset;
-// Number of memes to spawn
-public var minMemes: int = 2;
-public var maxMemes: int = 6;
 // Memes are spawned in a ring this far from the player
 public var spawnDistance: float = 50.0F;
 // Memes aren't spawned if the player doesn't move beyond this point
-public var walkDistance: float = 5.0F;
+public var walkDistance: float = 1.0F;
 
 // List of memes to work with
 private var memeQueue : Queue.< String>;
@@ -61,29 +58,20 @@ function loadMemes() {
 function spawnNewMemesAsNeeded() {
 	var lastPosition: Vector3;
 	var distance: float;
-	while (true) {
+	while (memeQueue.Count > 0) {
 		// Spawn new memes at distance
 		Debug.Log("Spawning new memes");
-		var memesToSpawn: int = Random.Range(minMemes, maxMemes);
-		if (memesToSpawn > memeQueue.Count) {
-			Debug.Log("Meme queue empty");
-			break;
-		}
+		var meme: GameObject;
+		var offset: Vector3;
+		var memeName: String = memeQueue.Dequeue();
+		Debug.Log("Spawning: " + memeName);
 		
-		for (var i=0; i<memesToSpawn; i++) {
-			var meme: GameObject;
-			var offset: Vector3;
-			var memeName: String = memeQueue.Dequeue();
-			Debug.Log("Spawning: " + memeName);
-			
-			offset = Random.onUnitSphere * spawnDistance;
-			offset.y = Random.Range(-8.0F, 8.0F);
-			offset += transform.position;
-			meme = Instantiate(this.meme, offset, Quaternion.identity);
-			meme.GetComponent(GimmeAMeme).imageUrl = memeName;
-			meme.GetComponent(GimmeAMeme).startTextureDownload();
-			
-		}
+		offset = Random.onUnitSphere * spawnDistance;
+		offset.y = Random.Range(-8.0F, 8.0F);
+		offset += transform.position;
+		meme = Instantiate(this.meme, offset, Quaternion.identity);
+		meme.GetComponent(MemeController).imageUrl = memeName;
+		meme.GetComponent(MemeController).startTextureDownload();
 		// Reset position, wait for distance to pass
 		lastPosition = transform.position;
 		do {
